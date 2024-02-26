@@ -3,6 +3,7 @@ There is no such thing as a low-energy rich country, claims one [popular Twitter
 
 
 **Figure 1. Access to Electricity**
+
 ![image](https://github.com/LNshuti/african-currencies/assets/13305262/e39c37e4-b80d-40b5-b73e-ae9bc85ca041)
 
 
