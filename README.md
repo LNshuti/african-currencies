@@ -3,11 +3,15 @@ There is no such thing as a low-energy rich country, claims one [popular Twitter
 
 
 
-**Data Sources**
+## **Data Sources**
 1. UN Commtrade [database](https://comtradedeveloper.un.org/)
 2. Atlas for Economic Complexity [data](https://atlas.cid.harvard.edu/)
 
 **Figure 1. Access to Electricity**
+
+**Figure 2. Historical Exchange rate of African Currency versus the US Dollar.**
+
+## **References**
 
 
 
