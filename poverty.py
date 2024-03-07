@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the dataset
-file_path = '/Users/lnshuti/Desktop/portfolio/african-currencies/data/API_SI.POV.LMIC_DS2_en_csv_v2_3545/API_SI.POV.LMIC_DS2_en_csv_v2_3545.csv'
+file_path = 'data/API_SI.POV.LMIC_DS2_en_csv_v2_3545/API_SI.POV.LMIC_DS2_en_csv_v2_3545.csv'
 df = pd.read_csv(file_path, skiprows=4)
 
 # Clean column names using a similar approach to janitor's clean_names in R

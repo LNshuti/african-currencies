@@ -1,1 +1,4 @@
-
+pandas 
+comtradeapicall
+numpy
+matplotlib
