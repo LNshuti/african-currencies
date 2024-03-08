@@ -3,3 +3,4 @@ comtradeapicall
 numpy
 matplotlib
 seaborn
+urllib3
