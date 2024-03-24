@@ -1,12 +1,13 @@
 name: africa
 channels:
   - conda-forge
+  - defaults
 dependencies:
   - python=3.10
   - pip
   - pip:
-    - deepspeed
-    - accelerate
-    - sentencepiece
-    - git+https://github.com/huggingface/transformers.git
-    - datasets
+    - pandas 
+    - numpy
+    - matplotlib
+    - seaborn
+    - geopandas
