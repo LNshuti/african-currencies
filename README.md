@@ -8,7 +8,7 @@ There is no such thing as a low-energy rich country, claims one [popular Twitter
 ## **Data Sources**
 1. UN Commtrade [database](https://comtradedeveloper.un.org/)
 2. Atlas for Economic Complexity [data](https://atlas.cid.harvard.edu/)
-3. International Monetary Fund
+3. International Financial Statistics. https://data.imf.org/?sk=4c514d48-b6ba-49ed-8ab9-52b0c1a0179b. Accessed 03-24-2024
 
 **Figure 1. Access to Electricity**
 
