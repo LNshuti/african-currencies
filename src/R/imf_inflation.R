@@ -17,7 +17,7 @@ download_african_inflation_data <- function() {
   ifs_codes <- DataStructureMethod(db_id)
   indicator_code <- CodeSearch(ifs_codes, "CL_INDICATOR_IFS", "CPI")$CodeValue
   
-  # Find African countries in the IFS database
+  # List of African countries by two-digit country codes. Move into helpers later. 
   country_codes = c(
     "DZ", # Algeria
     "AO", # Angola
@@ -30,4 +30,68 @@ download_african_inflation_data <- function() {
     "CF", # Central African Republic
     "TD", # Chad
     "KM", # Comoros
-    "CD", # Democratic Republic 
+    "CD", # Democratic Republic of the Congo
+    "CG", # Republic of the Congo
+    "CI", # Côte d'Ivoire
+    "DJ", # Djibouti
+    "EG", # Egypt
+    "GQ", # Equatorial Guinea
+    "ER", # Eritrea
+    "SZ", # Eswatini
+    "ET", # Ethiopia
+    "GA", # Gabon
+    "GM", # Gambia
+    "GH", # Ghana
+    "GN", # Guinea
+    "GW", # Guinea-Bissau
+    "KE", # Kenya
+    "LS", # Lesotho
+    "LR", # Liberia
+    "LY", # Libya
+    "MG", # Madagascar
+    "MW", # Malawi
+    "ML", # Mali
+    "MR", # Mauritania
+    "MU", # Mauritius
+    "MA", # Morocco
+    "MZ", # Mozambique
+    "NA", # Namibia
+    "NE", # Niger
+    "NG", # Nigeria
+    "RE", # Réunion
+    "RW", # Rwanda
+    "SH", # Saint Helena
+    "ST", # Sao Tome and Principe
+    "SN", # Senegal
+    "SC", # Seychelles
+    "SL", # Sierra Leone
+    "SO", # Somalia
+    "ZA", # South Africa
+    "SS", # South Sudan
+    "SD", # Sudan
+    "TZ", # Tanzania
+    "TG", # Togo
+    "TN", # Tunisia
+    "UG", # Uganda
+    "EH", # Western Sahara
+    "ZM", # Zambia
+    "ZW"  # Zimbabwe
+  )
+  
+  
+  # Define a start and end date for the data query
+  start_date <- "2000-01-01" # Modify as needed
+  end_date <- "2023-01-01"   # Modify as needed
+  
+  # Download inflation data (CPI) for each African country
+  inflation_data <- map_df(country_codes, function(country_code) {
+    query_filter <- list(CL_FREQ = "A", CL_AREA_IFS = country_code, CL_INDICATOR_IFS = indicator_code)
+    CompactDataMethod(db_id, query_filter, start_date, end_date, checkquery = FALSE, tidy = TRUE)
+  })
+  
+  # Return the data frame
+  return(inflation_data)
+}
+
+# Calling the function to download the data
+african_inflation_data <- download_african_inflation_data()
