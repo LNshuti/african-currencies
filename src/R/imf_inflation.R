@@ -78,15 +78,19 @@ download_african_inflation_data <- function() {
     "ZW"  # Zimbabwe
   )
   
-  
   # Define a start and end date for the data query
   start_date <- "2000-01-01" # Modify as needed
   end_date <- "2023-01-01"   # Modify as needed
   
-  # Download inflation data (CPI) for each African country
+  # Download inflation data (CPI) for each African country with error handling
   inflation_data <- map_df(country_codes, function(country_code) {
-    query_filter <- list(CL_FREQ = "A", CL_AREA_IFS = country_code, CL_INDICATOR_IFS = indicator_code)
-    CompactDataMethod(db_id, query_filter, start_date, end_date, checkquery = FALSE, tidy = TRUE)
+    tryCatch({
+      query_filter <- list(CL_FREQ = "A", CL_AREA_IFS = country_code, CL_INDICATOR_IFS = indicator_code)
+      CompactDataMethod(db_id, query_filter, start_date, end_date, checkquery = FALSE, tidy = TRUE)
+    }, error = function(e) {
+      message(paste("Error in processing country code:", country_code, "Error:", e$message))
+      return(NULL) # or an appropriate value or structure to signify an error
+    })
   })
   
   # Return the data frame
@@ -94,4 +98,13 @@ download_african_inflation_data <- function() {
 }
 
 # Calling the function to download the data
-african_inflation_data <- download_african_inflation_data()
+african_inflation_data <- download_african_inflation_data() %>%
+  as_tibble() %>%
+  janitor::clean_names() %>%
+  mutate(obs_value = as.numeric(obs_value), time_period = as.factor(time_period))
+
+result <- african_inflation_data %>%
+  group_by(ref_area) %>%
+  summarize(
+    obs_value_diff = obs_value[which.max(as.numeric(time_period))] - obs_value[which.min(as.numeric(time_period))]
+  )
